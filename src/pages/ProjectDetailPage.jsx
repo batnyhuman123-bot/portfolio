@@ -641,13 +641,19 @@ function ProjectDetailPage({ projectSlug }) {
               <section id="screenshots" className="mt-12 scroll-mt-24">
                 <DotHeading title="🖼️ Screenshots" colorClass="bg-rose-400" />
                 <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  {['Gameplay', 'UI', 'Level 1', 'Level 2'].map((label) => (
-                    <div
-                      key={label}
-                      className="flex min-h-[180px] items-center justify-center rounded-[16px] border border-dashed border-zinc-400/70 bg-zinc-100/80 text-center text-sm text-zinc-500"
-                    >
-                      {label} Screenshot
-                    </div>
+                  {[
+                    { src: 'https://i.postimg.cc/NFQ1L1D8/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 1' },
+                    { src: 'https://i.postimg.cc/NFNrMZLV/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 2' },
+                    { src: 'https://i.postimg.cc/rmMd9q4c/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 3' },
+                    { src: 'https://i.postimg.cc/MZscy2p2/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 4' },
+                  ].map((shot) => (
+                    <img
+                      key={shot.src}
+                      src={shot.src}
+                      alt={shot.alt}
+                      className="h-full min-h-[180px] w-full rounded-[16px] border border-zinc-500/60 object-cover"
+                      loading="lazy"
+                    />
                   ))}
                 </div>
               </section>
