@@ -24,7 +24,9 @@ function BulletList({ items }) {
 function ProjectDetailPage({ projectSlug }) {
   const [solutionSlideIndex, setSolutionSlideIndex] = useState(0)
   const [processSlideIndex, setProcessSlideIndex] = useState(0)
+  const [shinChanScreenshotIndex, setShinChanScreenshotIndex] = useState(0)
   const processTouchStartX = useRef(null)
+  const screenshotTouchStartX = useRef(null)
   const location = useLocation()
   const { slug: slugFromParams } = useParams()
   const slug = projectSlug ?? slugFromParams
@@ -96,6 +98,12 @@ function ProjectDetailPage({ projectSlug }) {
     { id: 'screenshots', label: 'Screenshots', accent: 'bg-pink-400' },
     { id: 'learning', label: 'What I Learned', accent: 'bg-emerald-500' },
   ]
+  const shinChanScreenshotSlides = [
+    { src: 'https://i.postimg.cc/NFQ1L1D8/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 1' },
+    { src: 'https://i.postimg.cc/NFNrMZLV/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 2' },
+    { src: 'https://i.postimg.cc/rmMd9q4c/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 3' },
+    { src: 'https://i.postimg.cc/MZscy2p2/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 4' },
+  ]
 
   const showPreviousProcessSlide = () => {
     setProcessSlideIndex((prev) => (prev === 0 ? moniProcessSlides.length - 1 : prev - 1))
@@ -122,6 +130,38 @@ function ProjectDetailPage({ projectSlug }) {
       showNextProcessSlide()
     } else {
       showPreviousProcessSlide()
+    }
+  }
+
+  const showPreviousShinChanScreenshot = () => {
+    setShinChanScreenshotIndex((prev) =>
+      prev === 0 ? shinChanScreenshotSlides.length - 1 : prev - 1,
+    )
+  }
+
+  const showNextShinChanScreenshot = () => {
+    setShinChanScreenshotIndex((prev) =>
+      prev === shinChanScreenshotSlides.length - 1 ? 0 : prev + 1,
+    )
+  }
+
+  const onScreenshotTouchStart = (event) => {
+    screenshotTouchStartX.current = event.touches[0].clientX
+  }
+
+  const onScreenshotTouchEnd = (event) => {
+    if (screenshotTouchStartX.current === null) {
+      return
+    }
+    const deltaX = event.changedTouches[0].clientX - screenshotTouchStartX.current
+    screenshotTouchStartX.current = null
+    if (Math.abs(deltaX) < 40) {
+      return
+    }
+    if (deltaX < 0) {
+      showNextShinChanScreenshot()
+    } else {
+      showPreviousShinChanScreenshot()
     }
   }
 
@@ -555,21 +595,66 @@ function ProjectDetailPage({ projectSlug }) {
 
               <section id="screenshots" className="mt-12 scroll-mt-24">
                 <DotHeading title="🖼️ Screenshots" colorClass="bg-rose-400" />
-                <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  {[
-                    { src: 'https://i.postimg.cc/NFQ1L1D8/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 1' },
-                    { src: 'https://i.postimg.cc/NFNrMZLV/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 2' },
-                    { src: 'https://i.postimg.cc/rmMd9q4c/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 3' },
-                    { src: 'https://i.postimg.cc/MZscy2p2/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 4' },
-                  ].map((shot) => (
-                    <img
-                      key={shot.src}
-                      src={shot.src}
-                      alt={shot.alt}
-                      className="h-full min-h-[180px] w-full rounded-[16px] border border-zinc-500/60 object-cover"
-                      loading="lazy"
-                    />
-                  ))}
+                <div
+                  className="mt-5"
+                  onTouchStart={onScreenshotTouchStart}
+                  onTouchEnd={onScreenshotTouchEnd}
+                  role="presentation"
+                >
+                  <div className="w-full min-w-0 overflow-hidden rounded-[20px]">
+                    <div
+                      className="flex w-full transition-transform duration-500 ease-out will-change-transform"
+                      style={{ transform: `translate3d(-${shinChanScreenshotIndex * 100}%, 0, 0)` }}
+                    >
+                      {shinChanScreenshotSlides.map((shot) => (
+                        <div
+                          key={shot.src}
+                          className="box-border min-w-0 max-w-full shrink-0 grow-0"
+                          style={{ flex: '0 0 100%' }}
+                        >
+                          <img
+                            src={shot.src}
+                            alt={shot.alt}
+                            className="h-full min-h-[220px] w-full rounded-[16px] border border-zinc-500/60 object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-5 flex items-center justify-center gap-3">
+                    <button
+                      type="button"
+                      onClick={showPreviousShinChanScreenshot}
+                      className="rounded-full border border-zinc-500/70 bg-white/70 px-4 py-2 text-lg text-zinc-700 transition-colors duration-300 hover:bg-white"
+                      aria-label="Previous screenshot"
+                    >
+                      ←
+                    </button>
+                    <button
+                      type="button"
+                      onClick={showNextShinChanScreenshot}
+                      className="rounded-full border border-zinc-500/70 bg-white/70 px-4 py-2 text-lg text-zinc-700 transition-colors duration-300 hover:bg-white"
+                      aria-label="Next screenshot"
+                    >
+                      →
+                    </button>
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-center gap-2">
+                    {shinChanScreenshotSlides.map((shot, idx) => (
+                      <button
+                        key={shot.src}
+                        type="button"
+                        onClick={() => setShinChanScreenshotIndex(idx)}
+                        className={`h-2.5 w-2.5 rounded-full transition-colors duration-300 ${
+                          idx === shinChanScreenshotIndex ? 'bg-zinc-800' : 'bg-zinc-400/70'
+                        }`}
+                        aria-label={`Go to screenshot ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </section>
 
