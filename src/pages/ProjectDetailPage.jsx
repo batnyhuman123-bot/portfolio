@@ -98,6 +98,14 @@ function ProjectDetailPage({ projectSlug }) {
     { id: 'screenshots', label: 'Screenshots', accent: 'bg-pink-400' },
     { id: 'learning', label: 'What I Learned', accent: 'bg-emerald-500' },
   ]
+  const rainbowContents = [
+    { id: 'problem', label: 'Problem', accent: 'bg-rose-400' },
+    { id: 'solution', label: 'Solution', accent: 'bg-cyan-500' },
+    { id: 'process', label: 'Process', accent: 'bg-sky-500' },
+    { id: 'key-features', label: 'Key Features', accent: 'bg-violet-500' },
+    { id: 'before-after', label: 'Before & After', accent: 'bg-amber-400' },
+    { id: 'reflection', label: 'Reflection', accent: 'bg-emerald-400' },
+  ]
   const shinChanScreenshotSlides = [
     { src: 'https://i.postimg.cc/NFQ1L1D8/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 1' },
     { src: 'https://i.postimg.cc/NFNrMZLV/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 2' },
@@ -672,8 +680,32 @@ function ProjectDetailPage({ projectSlug }) {
             </div>
           </>
         ) : isRainbowFalls ? (
-          <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
-            <section className="mt-1">
+          <>
+            <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
+              <section className="rounded-[18px] border border-zinc-500/60 bg-[#fffde9] px-6 py-6">
+                <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">Contents</h2>
+                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {rainbowContents.map((item, idx) => (
+                    <Link
+                      key={item.id}
+                      to={`/rainbow-falls#${item.id}`}
+                      className="rounded-[14px] border border-zinc-400/50 bg-[#f6f6f6] px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
+                    >
+                      <span className={`block h-2 w-12 rounded-full ${item.accent}`} aria-hidden="true" />
+                      <p className="mt-2 text-3xl font-semibold leading-none text-zinc-900">
+                        {String(idx + 1).padStart(2, '0')}
+                      </p>
+                      <p className="mt-2 text-sm font-medium uppercase tracking-wide text-zinc-700">
+                        {item.label}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
+            <section id="problem" className="mt-1 scroll-mt-24">
               <DotHeading title="Problem" colorClass="bg-red-500" />
               <BulletList
                 items={[
@@ -685,7 +717,7 @@ function ProjectDetailPage({ projectSlug }) {
               />
             </section>
 
-            <section className="mt-12">
+            <section id="solution" className="mt-12 scroll-mt-24">
               <DotHeading title="Solution" colorClass="bg-lime-600" />
               <BulletList
                 items={[
@@ -697,7 +729,7 @@ function ProjectDetailPage({ projectSlug }) {
               />
             </section>
 
-            <section className="mt-12">
+            <section id="process" className="mt-12 scroll-mt-24">
               <DotHeading title="Process" colorClass="bg-sky-500" />
               <BulletList
                 items={[
@@ -709,7 +741,7 @@ function ProjectDetailPage({ projectSlug }) {
               />
             </section>
 
-            <section className="mt-12">
+            <section id="key-features" className="mt-12 scroll-mt-24">
               <DotHeading title="Key Features" colorClass="bg-violet-400" />
               <BulletList
                 items={[
@@ -720,7 +752,7 @@ function ProjectDetailPage({ projectSlug }) {
               />
             </section>
 
-            <section className="mt-16">
+            <section id="before-after" className="mt-16 scroll-mt-24">
               <h2 className="text-5xl font-semibold tracking-tight text-zinc-900">BEFORE &amp; AFTER</h2>
 
               <div className="mt-8">
@@ -756,7 +788,7 @@ function ProjectDetailPage({ projectSlug }) {
               </div>
             </section>
 
-            <section className="mt-12">
+            <section id="reflection" className="mt-12 scroll-mt-24">
               <DotHeading title="Reflection" colorClass="bg-sky-500" />
               <BulletList
                 items={[
@@ -766,7 +798,8 @@ function ProjectDetailPage({ projectSlug }) {
                 ]}
               />
             </section>
-          </div>
+            </div>
+          </>
         ) : (
           <div className="mt-8 grid grid-cols-1 gap-4 sm:gap-5">
             <section className="rounded-[18px] border border-zinc-500/60 bg-[#f6f6f6] px-5 py-5">
