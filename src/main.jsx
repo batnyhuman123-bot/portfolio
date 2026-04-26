@@ -11,7 +11,10 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/moni-traka" element={<ProjectDetailPage projectSlug="moni-traka" />} />
-        <Route path="/i-see-you" element={<ProjectDetailPage projectSlug="i-see-you" />} />
+        <Route
+          path="/shinchan-adventures"
+          element={<ProjectDetailPage projectSlug="shinchan-adventures" />}
+        />
         <Route path="/rainbow-falls" element={<ProjectDetailPage projectSlug="rainbow-falls" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

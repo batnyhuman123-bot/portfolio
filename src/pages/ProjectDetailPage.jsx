@@ -31,6 +31,7 @@ function ProjectDetailPage({ projectSlug }) {
   const project = projects.find((item) => item.slug === slug)
   const isRainbowFalls = project?.slug === 'rainbow-falls'
   const isMoniTraka = project?.slug === 'moni-traka'
+  const isShinChan = project?.slug === 'shinchan-adventures'
   const moniSolutionSlides = [
     {
       title: 'Smart Dashboard & Cash Tracking',
@@ -395,6 +396,168 @@ function ProjectDetailPage({ projectSlug }) {
                 iteration, and create interfaces that balance functionality and simplicity.
               </p>
             </section>
+            </div>
+          </>
+        ) : isShinChan ? (
+          <>
+            <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
+              <section className="rounded-[18px] border border-zinc-500/60 bg-[#fffde9] px-6 py-6">
+                <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">Contents</h2>
+                <ul className="mt-5 space-y-2 text-lg text-zinc-700">
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#intro"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Intro
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#goal"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Goal
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#features"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Features
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#gameplay"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Gameplay
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#development"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Development
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#process"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Process
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#screenshots"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Screenshots
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#learning"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      What I Learned
+                    </Link>
+                  </li>
+                </ul>
+              </section>
+            </div>
+
+            <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
+              <section id="intro" className="mt-1 scroll-mt-24">
+                <DotHeading title="Intro" colorClass="bg-indigo-500" />
+                <p className="mt-5 text-xl leading-relaxed text-zinc-800">
+                  A fun 2D game where players collect snacks, avoid obstacles, and complete levels.
+                </p>
+              </section>
+
+              <section id="goal" className="mt-12 scroll-mt-24">
+                <DotHeading title="Goal" colorClass="bg-red-500" />
+                <p className="mt-5 text-xl leading-relaxed text-zinc-800">
+                  The goal of this project is to create a simple and enjoyable 2D game with basic
+                  controls and clear objectives.
+                </p>
+              </section>
+
+              <section id="features" className="mt-12 scroll-mt-24">
+                <DotHeading title="Features" colorClass="bg-lime-600" />
+                <BulletList
+                  items={[
+                    'Side-scrolling gameplay',
+                    'Jump mechanic',
+                    'Collect snacks',
+                    'Avoid obstacles',
+                    '5 lives system',
+                    'Timer challenge',
+                  ]}
+                />
+              </section>
+
+              <section id="gameplay" className="mt-12 scroll-mt-24">
+                <DotHeading title="Gameplay" colorClass="bg-sky-500" />
+                <div className="mt-5 space-y-6 text-xl leading-relaxed text-zinc-800">
+                  <div>
+                    <h3 className="text-lg font-semibold text-zinc-900">Win</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-8">
+                      <li>Reach Shiro</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-zinc-900">Lose</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-8">
+                      <li>Hit obstacles → lose lives</li>
+                      <li>Time runs out</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section id="development" className="mt-12 scroll-mt-24">
+                <DotHeading title="Development" colorClass="bg-amber-500" />
+                <BulletList items={['Unity', 'C#', '2D Game']} />
+              </section>
+
+              <section id="process" className="mt-12 scroll-mt-24">
+                <DotHeading title="Process" colorClass="bg-violet-500" />
+                <BulletList
+                  items={['Planned the game idea', 'Designed gameplay flow', 'Built using Unity']}
+                />
+              </section>
+
+              <section id="screenshots" className="mt-12 scroll-mt-24">
+                <DotHeading title="Screenshots" colorClass="bg-rose-400" />
+                <p className="mt-3 text-base text-zinc-600">Screenshots coming soon — replace placeholders below when ready.</p>
+                <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {[1, 2, 3, 4].map((n) => (
+                    <div
+                      key={n}
+                      className="flex min-h-[180px] items-center justify-center rounded-[16px] border border-dashed border-zinc-400/70 bg-zinc-100/80 text-center text-sm text-zinc-500"
+                    >
+                      Screenshot {n}
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <section id="learning" className="mt-12 scroll-mt-24">
+                <DotHeading title="What I Learned" colorClass="bg-emerald-500" />
+                <BulletList
+                  items={[
+                    'Learned Unity basics',
+                    'Learned game logic',
+                    'Improved problem-solving',
+                  ]}
+                />
+              </section>
             </div>
           </>
         ) : isRainbowFalls ? (

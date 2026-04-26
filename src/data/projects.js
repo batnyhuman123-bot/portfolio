@@ -18,22 +18,20 @@ export const projects = [
     tools: ['Figma', 'UI Flow Mapping', 'Wireframing', 'Design Prototyping'],
   },
   {
-    slug: 'i-see-you',
-    route: '/i-see-you',
-    title: 'I SEE YOU APP',
-    subtitle: 'AI DETECTION & ASSISTANCE APP',
+    slug: 'shinchan-adventures',
+    route: '/shinchan-adventures',
+    title: 'Shin-Chan Adventures',
+    subtitle: '2D Adventure Game (Unity)',
     description:
-      'A smart assistant that helps everyday users identify objects and get instant AI guidance in real-world situations.',
-    imageSrc: 'https://i.postimg.cc/Z5nsv14q/I-SEE-YOU-AI-Detection-Assistance-App-(1).png',
-    imageAlt: 'I See You app mockup with yellow and green phone interface',
-    imageFit: 'object-contain',
+      'A simple 2D side-scrolling game where players control Shin-chan to collect snacks, avoid obstacles, and reach his dog, Shiro.',
+    imageSrc: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1200&q=80&auto=format&fit=crop',
+    imageAlt: '2D game environment placeholder — replace with your Shin-Chan Adventures screenshot',
+    imageFit: 'object-cover',
     overview:
-      'I SEE YOU is a mobile app concept that combines AI-powered object recognition with actionable guidance in one streamlined experience.',
-    problem:
-      'Users often need immediate contextual help in real-world situations but existing tools can be fragmented and difficult to use quickly.',
-    solution:
-      'I structured the app around a direct scan-to-result journey with a minimal UI, so users can identify objects and receive guidance in seconds.',
-    tools: ['Figma', 'UX Research', 'User Flow Design', 'Mobile UI Design'],
+      'A fun 2D side-scrolling game built in Unity where players help Shin-chan collect snacks, dodge hazards, and reach Shiro before time runs out.',
+    problem: '',
+    solution: '',
+    tools: ['Unity', 'C#', '2D'],
   },
   {
     slug: 'rainbow-falls',
