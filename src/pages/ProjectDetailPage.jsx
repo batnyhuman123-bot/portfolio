@@ -75,6 +75,27 @@ function ProjectDetailPage({ projectSlug }) {
         'Based on the sketches, I developed low-fidelity wireframes to define the layout, user flow, and content placement for each screen. This step helped ensure a clear structure and smooth navigation before designing the final high-fidelity UI.',
     },
   ]
+  const moniContents = [
+    { id: 'problem', label: 'Problem', accent: 'bg-rose-400' },
+    { id: 'solution', label: 'Solution', accent: 'bg-cyan-500' },
+    { id: 'process', label: 'Process', accent: 'bg-indigo-500' },
+    { id: 'final-design', label: 'Final Design', accent: 'bg-sky-500' },
+    { id: 'product-success', label: 'Product Successes', accent: 'bg-amber-400' },
+    { id: 'learning', label: 'What I Learned', accent: 'bg-emerald-400' },
+  ]
+  const shinChanContents = [
+    { id: 'intro', label: 'Intro', accent: 'bg-emerald-400' },
+    { id: 'goal', label: 'Goal', accent: 'bg-rose-400' },
+    { id: 'features', label: 'Features', accent: 'bg-indigo-500' },
+    { id: 'gameplay-rules', label: 'Gameplay Rules', accent: 'bg-sky-500' },
+    { id: 'objectives', label: 'Game Objectives', accent: 'bg-amber-400' },
+    { id: 'gameplay-flow', label: 'Gameplay Flow', accent: 'bg-cyan-500' },
+    { id: 'development', label: 'Development', accent: 'bg-yellow-400' },
+    { id: 'process', label: 'Process', accent: 'bg-violet-500' },
+    { id: 'testing-feedback', label: 'Testing & Feedback', accent: 'bg-orange-400' },
+    { id: 'screenshots', label: 'Screenshots', accent: 'bg-pink-400' },
+    { id: 'learning', label: 'What I Learned', accent: 'bg-emerald-500' },
+  ]
 
   const showPreviousProcessSlide = () => {
     setProcessSlideIndex((prev) => (prev === 0 ? moniProcessSlides.length - 1 : prev - 1))
@@ -160,56 +181,23 @@ function ProjectDetailPage({ projectSlug }) {
             <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
               <section className="rounded-[18px] border border-zinc-500/60 bg-[#fffde9] px-6 py-6">
                 <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">Contents</h2>
-                <ul className="mt-5 space-y-2 text-lg text-zinc-700">
-                  <li>
+                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {moniContents.map((item, idx) => (
                     <Link
-                      to="/moni-traka#problem"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                      key={item.id}
+                      to={`/moni-traka#${item.id}`}
+                      className="rounded-[14px] border border-zinc-400/50 bg-[#f6f6f6] px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
                     >
-                      Problem
+                      <span className={`block h-2 w-12 rounded-full ${item.accent}`} aria-hidden="true" />
+                      <p className="mt-2 text-3xl font-semibold leading-none text-zinc-900">
+                        {String(idx + 1).padStart(2, '0')}
+                      </p>
+                      <p className="mt-2 text-sm font-medium uppercase tracking-wide text-zinc-700">
+                        {item.label}
+                      </p>
                     </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/moni-traka#solution"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Solution
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/moni-traka#process"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Process
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/moni-traka#final-design"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Final Design
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/moni-traka#product-success"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Product Successes 👏
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/moni-traka#learning"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      What I Learned 🌱
-                    </Link>
-                  </li>
-                </ul>
+                  ))}
+                </div>
               </section>
             </div>
 
@@ -403,96 +391,23 @@ function ProjectDetailPage({ projectSlug }) {
             <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
               <section className="rounded-[18px] border border-zinc-500/60 bg-[#fffde9] px-6 py-6">
                 <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">Contents</h2>
-                <ul className="mt-5 space-y-2 text-lg text-zinc-700">
-                  <li>
+                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+                  {shinChanContents.map((item, idx) => (
                     <Link
-                      to="/shinchan-adventures#intro"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                      key={item.id}
+                      to={`/shinchan-adventures#${item.id}`}
+                      className="rounded-[14px] border border-zinc-400/50 bg-[#f6f6f6] px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white"
                     >
-                      Intro
+                      <span className={`block h-2 w-12 rounded-full ${item.accent}`} aria-hidden="true" />
+                      <p className="mt-2 text-3xl font-semibold leading-none text-zinc-900">
+                        {String(idx + 1).padStart(2, '0')}
+                      </p>
+                      <p className="mt-2 text-sm font-medium uppercase tracking-wide text-zinc-700">
+                        {item.label}
+                      </p>
                     </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/shinchan-adventures#goal"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Goal
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/shinchan-adventures#features"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Features
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/shinchan-adventures#gameplay-rules"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Gameplay Rules
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/shinchan-adventures#objectives"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Game Objectives
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/shinchan-adventures#gameplay-flow"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Gameplay Flow
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/shinchan-adventures#development"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Development
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/shinchan-adventures#process"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Process
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/shinchan-adventures#testing-feedback"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Testing & Feedback
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/shinchan-adventures#screenshots"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      Screenshots
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/shinchan-adventures#learning"
-                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                    >
-                      What I Learned
-                    </Link>
-                  </li>
-                </ul>
+                  ))}
+                </div>
               </section>
             </div>
 
