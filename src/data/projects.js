@@ -24,8 +24,8 @@ export const projects = [
     subtitle: '2D Adventure Game (Unity)',
     description:
       'A simple 2D side-scrolling game where players control Shin-chan to collect snacks, avoid obstacles, and reach his dog, Shiro.',
-    imageSrc: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1200&q=80&auto=format&fit=crop',
-    imageAlt: '2D game environment placeholder — replace with your Shin-Chan Adventures screenshot',
+    imageSrc: 'https://i.postimg.cc/xCtJdB4M/image.png',
+    imageAlt: 'Gaming controller with teal and orange lighting for Shin-Chan Adventures',
     imageFit: 'object-cover',
     overview:
       'A fun 2D side-scrolling game built in Unity where players help Shin-chan collect snacks, dodge hazards, and reach Shiro before time runs out.',
