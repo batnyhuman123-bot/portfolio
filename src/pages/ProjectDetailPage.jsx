@@ -430,10 +430,26 @@ function ProjectDetailPage({ projectSlug }) {
                   </li>
                   <li>
                     <Link
-                      to="/shinchan-adventures#gameplay"
+                      to="/shinchan-adventures#gameplay-rules"
                       className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
                     >
-                      Gameplay
+                      Gameplay Rules
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#objectives"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Game Objectives
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#gameplay-flow"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Gameplay Flow
                     </Link>
                   </li>
                   <li>
@@ -450,6 +466,14 @@ function ProjectDetailPage({ projectSlug }) {
                       className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
                     >
                       Process
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/shinchan-adventures#testing-feedback"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Testing & Feedback
                     </Link>
                   </li>
                   <li>
@@ -476,45 +500,86 @@ function ProjectDetailPage({ projectSlug }) {
               <section id="intro" className="mt-1 scroll-mt-24">
                 <DotHeading title="Intro" colorClass="bg-indigo-500" />
                 <p className="mt-5 text-xl leading-relaxed text-zinc-800">
-                  A fun 2D game where players collect snacks, avoid obstacles, and complete levels.
+                  A simple and fun 2D game where players collect snacks, avoid obstacles, and
+                  complete levels with increasing difficulty.
                 </p>
               </section>
 
               <section id="goal" className="mt-12 scroll-mt-24">
-                <DotHeading title="Goal" colorClass="bg-red-500" />
+                <DotHeading title="🎯 Goal" colorClass="bg-red-500" />
                 <p className="mt-5 text-xl leading-relaxed text-zinc-800">
-                  The goal of this project is to create a simple and enjoyable 2D game with basic
-                  controls and clear objectives.
+                  The goal of this project was to design a simple and engaging game using Canva for
+                  initial design and Unity for development, focusing on gameplay mechanics and user
+                  interaction.
                 </p>
               </section>
 
               <section id="features" className="mt-12 scroll-mt-24">
-                <DotHeading title="Features" colorClass="bg-lime-600" />
+                <DotHeading title="🎮 Features" colorClass="bg-lime-600" />
                 <BulletList
                   items={[
                     'Side-scrolling gameplay',
-                    'Jump mechanic',
-                    'Collect snacks',
-                    'Avoid obstacles',
-                    '5 lives system',
+                    'Jump mechanic (spacebar)',
+                    'Snack collection system',
+                    'Obstacles (stones)',
+                    'Lives system',
                     'Timer challenge',
+                    'Multiple difficulty levels',
                   ]}
                 />
               </section>
 
-              <section id="gameplay" className="mt-12 scroll-mt-24">
-                <DotHeading title="Gameplay" colorClass="bg-sky-500" />
+              <section id="gameplay-rules" className="mt-12 scroll-mt-24">
+                <DotHeading title="🎬 Gameplay Rules" colorClass="bg-sky-500" />
+                <BulletList
+                  items={[
+                    'Press spacebar to jump',
+                    'Avoid obstacles or lose a life',
+                    'Collect snacks to increase score',
+                    'Complete level before time runs out',
+                  ]}
+                />
+              </section>
+
+              <section id="objectives" className="mt-12 scroll-mt-24">
+                <DotHeading title="🏁 Game Objectives" colorClass="bg-amber-500" />
+                <div className="mt-5 space-y-6 text-xl leading-relaxed text-zinc-800">
+                  <div>
+                    <h3 className="text-lg font-semibold text-zinc-900">Easy</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-8">
+                      <li>Collect 5 snacks in 15 seconds</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-zinc-900">Medium</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-8">
+                      <li>Collect 25 snacks in 50 seconds</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-zinc-900">Hard</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-8">
+                      <li>Collect 25 snacks with more difficulty</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section id="gameplay-flow" className="mt-12 scroll-mt-24">
+                <DotHeading title="🎮 Gameplay Flow" colorClass="bg-cyan-500" />
                 <div className="mt-5 space-y-6 text-xl leading-relaxed text-zinc-800">
                   <div>
                     <h3 className="text-lg font-semibold text-zinc-900">Win</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-8">
-                      <li>Reach Shiro</li>
+                      <li>Collect required snacks</li>
+                      <li>Reach goal</li>
+                      <li>Go to next level</li>
                     </ul>
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-zinc-900">Lose</h3>
                     <ul className="mt-3 list-disc space-y-2 pl-8">
-                      <li>Hit obstacles → lose lives</li>
+                      <li>Lives = 0</li>
                       <li>Time runs out</li>
                     </ul>
                   </div>
@@ -522,39 +587,79 @@ function ProjectDetailPage({ projectSlug }) {
               </section>
 
               <section id="development" className="mt-12 scroll-mt-24">
-                <DotHeading title="Development" colorClass="bg-amber-500" />
-                <BulletList items={['Unity', 'C#', '2D Game']} />
-              </section>
-
-              <section id="process" className="mt-12 scroll-mt-24">
-                <DotHeading title="Process" colorClass="bg-violet-500" />
+                <DotHeading title="⚙️ Development" colorClass="bg-yellow-500" />
                 <BulletList
-                  items={['Planned the game idea', 'Designed gameplay flow', 'Built using Unity']}
+                  items={[
+                    'Designed UI and idea using Canva',
+                    'Developed game using Unity',
+                    'Programming language: C#',
+                  ]}
                 />
               </section>
 
+              <section id="process" className="mt-12 scroll-mt-24">
+                <DotHeading title="🧠 Process" colorClass="bg-violet-500" />
+                <BulletList
+                  items={[
+                    'Planned game concept',
+                    'Created visual idea in Canva',
+                    'Built gameplay in Unity',
+                    'Tested game with users',
+                  ]}
+                />
+              </section>
+
+              <section id="testing-feedback" className="mt-12 scroll-mt-24">
+                <DotHeading title="🧪 Testing & Feedback" colorClass="bg-orange-500" />
+                <div className="mt-5 space-y-6 text-xl leading-relaxed text-zinc-800">
+                  <div>
+                    <h3 className="text-lg font-semibold text-zinc-900">Players found the game:</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-8">
+                      <li>Fun and addictive</li>
+                      <li>Challenging and engaging</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-zinc-900">Some issues found:</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-8">
+                      <li>Game can feel too fast</li>
+                      <li>Jump timing is difficult</li>
+                      <li>Rules were not clear at first</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-zinc-900">Improvements:</h3>
+                    <ul className="mt-3 list-disc space-y-2 pl-8">
+                      <li>Add clearer instructions</li>
+                      <li>Adjust difficulty balance</li>
+                      <li>Improve user understanding</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
               <section id="screenshots" className="mt-12 scroll-mt-24">
-                <DotHeading title="Screenshots" colorClass="bg-rose-400" />
-                <p className="mt-3 text-base text-zinc-600">Screenshots coming soon — replace placeholders below when ready.</p>
+                <DotHeading title="🖼️ Screenshots" colorClass="bg-rose-400" />
                 <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  {[1, 2, 3, 4].map((n) => (
+                  {['Gameplay', 'UI', 'Level 1', 'Level 2'].map((label) => (
                     <div
-                      key={n}
+                      key={label}
                       className="flex min-h-[180px] items-center justify-center rounded-[16px] border border-dashed border-zinc-400/70 bg-zinc-100/80 text-center text-sm text-zinc-500"
                     >
-                      Screenshot {n}
+                      {label} Screenshot
                     </div>
                   ))}
                 </div>
               </section>
 
               <section id="learning" className="mt-12 scroll-mt-24">
-                <DotHeading title="What I Learned" colorClass="bg-emerald-500" />
+                <DotHeading title="🌱 What I Learned" colorClass="bg-emerald-500" />
                 <BulletList
                   items={[
-                    'Learned Unity basics',
-                    'Learned game logic',
-                    'Improved problem-solving',
+                    'Learned Unity basics and C# scripting',
+                    'Learned how to design gameplay mechanics',
+                    'Learned importance of user testing and feedback',
+                    'Improved problem-solving skills',
                   ]}
                 />
               </section>

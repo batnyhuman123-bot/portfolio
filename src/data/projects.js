@@ -23,7 +23,7 @@ export const projects = [
     title: 'Shin-Chan Adventures',
     subtitle: '2D Adventure Game (Unity)',
     description:
-      'A simple 2D side-scrolling game where players control Shin-chan to collect snacks, avoid obstacles, and reach his dog, Shiro.',
+      'A 2D side-scrolling game designed using Canva for UI planning and built in Unity, where players control Shin-chan to collect snacks, avoid obstacles, and reach Shiro.',
     imageSrc: 'https://i.postimg.cc/xCtJdB4M/image.png',
     imageAlt: 'Gaming controller with teal and orange lighting for Shin-Chan Adventures',
     imageFit: 'object-cover',
