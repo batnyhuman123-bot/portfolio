@@ -155,61 +155,64 @@ function ProjectDetailPage({ projectSlug }) {
         </div>
 
         {isMoniTraka ? (
-          <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
-            <section className="mb-10 mt-1 rounded-[18px] border border-zinc-500/60 bg-[#fffde9] px-6 py-6">
-              <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">Contents</h2>
-              <ul className="mt-5 space-y-2 text-lg text-zinc-700">
-                <li>
-                  <Link
-                    to="/moni-traka#problem"
-                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                  >
-                    Problem
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/moni-traka#solution"
-                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                  >
-                    Solution
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/moni-traka#process"
-                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                  >
-                    Process
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/moni-traka#final-design"
-                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                  >
-                    Final Design
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/moni-traka#product-success"
-                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                  >
-                    Product Successes 👏
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/moni-traka#learning"
-                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
-                  >
-                    What I Learned 🌱
-                  </Link>
-                </li>
-              </ul>
-            </section>
+          <>
+            <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
+              <section className="rounded-[18px] border border-zinc-500/60 bg-[#fffde9] px-6 py-6">
+                <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">Contents</h2>
+                <ul className="mt-5 space-y-2 text-lg text-zinc-700">
+                  <li>
+                    <Link
+                      to="/moni-traka#problem"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Problem
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/moni-traka#solution"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Solution
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/moni-traka#process"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Process
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/moni-traka#final-design"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Final Design
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/moni-traka#product-success"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      Product Successes 👏
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/moni-traka#learning"
+                      className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                    >
+                      What I Learned 🌱
+                    </Link>
+                  </li>
+                </ul>
+              </section>
+            </div>
 
+            <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
             <section id="problem" className="mt-1 scroll-mt-24">
               <DotHeading title="Problem" colorClass="bg-red-500" />
               <p className="mt-5 text-xl leading-relaxed text-zinc-800">
@@ -392,7 +395,8 @@ function ProjectDetailPage({ projectSlug }) {
                 iteration, and create interfaces that balance functionality and simplicity.
               </p>
             </section>
-          </div>
+            </div>
+          </>
         ) : isRainbowFalls ? (
           <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
             <section className="mt-1">
