@@ -160,37 +160,52 @@ function ProjectDetailPage({ projectSlug }) {
               <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">Contents</h2>
               <ul className="mt-5 space-y-2 text-lg text-zinc-700">
                 <li>
-                  <a href="#problem" className="transition-colors duration-300 hover:text-zinc-900 hover:underline">
+                  <Link
+                    to="/moni-traka#problem"
+                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                  >
                     Problem
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#solution" className="transition-colors duration-300 hover:text-zinc-900 hover:underline">
+                  <Link
+                    to="/moni-traka#solution"
+                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                  >
                     Solution
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#process" className="transition-colors duration-300 hover:text-zinc-900 hover:underline">
+                  <Link
+                    to="/moni-traka#process"
+                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                  >
                     Process
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#final-design" className="transition-colors duration-300 hover:text-zinc-900 hover:underline">
+                  <Link
+                    to="/moni-traka#final-design"
+                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                  >
                     Final Design
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#product-success"
+                  <Link
+                    to="/moni-traka#product-success"
                     className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
                   >
                     Product Successes 👏
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#learning" className="transition-colors duration-300 hover:text-zinc-900 hover:underline">
+                  <Link
+                    to="/moni-traka#learning"
+                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                  >
                     What I Learned 🌱
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </section>
@@ -214,15 +229,16 @@ function ProjectDetailPage({ projectSlug }) {
             </section>
 
             <section className="mt-10">
-              <div className="w-full overflow-hidden rounded-[28px]">
+              <div className="w-full min-w-0 overflow-hidden rounded-[28px]">
                 <div
-                  className="flex w-full transition-transform duration-500 ease-out"
-                  style={{ transform: `translateX(-${solutionSlideIndex * 100}%)` }}
+                  className="flex w-full transition-transform duration-500 ease-out will-change-transform"
+                  style={{ transform: `translate3d(-${solutionSlideIndex * 100}%, 0, 0)` }}
                 >
                   {moniSolutionSlides.map((slide) => (
                     <div
                       key={slide.title}
-                      className="w-full min-w-0 max-w-full shrink-0 grow-0 basis-full"
+                      className="box-border min-w-0 max-w-full shrink-0 grow-0"
+                      style={{ flex: '0 0 100%' }}
                     >
                       <div className="rounded-[28px] bg-[#fffde9] p-8 lg:p-10">
                         <img
@@ -279,15 +295,16 @@ function ProjectDetailPage({ projectSlug }) {
                 onTouchEnd={onProcessTouchEnd}
                 role="presentation"
               >
-                <div className="w-full overflow-hidden rounded-[28px]">
+                <div className="w-full min-w-0 overflow-hidden rounded-[28px]">
                   <div
-                    className="flex w-full transition-transform duration-500 ease-out"
-                    style={{ transform: `translateX(-${processSlideIndex * 100}%)` }}
+                    className="flex w-full transition-transform duration-500 ease-out will-change-transform"
+                    style={{ transform: `translate3d(-${processSlideIndex * 100}%, 0, 0)` }}
                   >
                     {moniProcessSlides.map((slide) => (
                       <div
                         key={slide.title}
-                        className="w-full min-w-0 max-w-full shrink-0 grow-0 basis-full"
+                        className="box-border min-w-0 max-w-full shrink-0 grow-0"
+                        style={{ flex: '0 0 100%' }}
                       >
                         <div className="rounded-[28px] bg-[#fffde9] p-8 lg:p-10">
                           <h3 className="text-3xl font-semibold text-zinc-900 sm:text-4xl">{slide.title}</h3>
