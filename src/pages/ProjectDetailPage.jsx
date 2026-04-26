@@ -1,0 +1,521 @@
+import { useEffect, useRef, useState } from 'react'
+import { Link, useLocation, useParams } from 'react-router-dom'
+import { projects } from '../data/projects'
+
+function DotHeading({ title, colorClass }) {
+  return (
+    <h2 className="flex items-center gap-3 text-4xl font-semibold text-zinc-900">
+      <span className={`h-5 w-5 rounded-full ${colorClass}`} aria-hidden="true" />
+      {title}
+    </h2>
+  )
+}
+
+function BulletList({ items }) {
+  return (
+    <ul className="mt-5 list-disc space-y-3 pl-8 text-xl leading-relaxed text-zinc-800">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
+  )
+}
+
+function ProjectDetailPage({ projectSlug }) {
+  const [solutionSlideIndex, setSolutionSlideIndex] = useState(0)
+  const [processSlideIndex, setProcessSlideIndex] = useState(0)
+  const processTouchStartX = useRef(null)
+  const location = useLocation()
+  const { slug: slugFromParams } = useParams()
+  const slug = projectSlug ?? slugFromParams
+  const project = projects.find((item) => item.slug === slug)
+  const isRainbowFalls = project?.slug === 'rainbow-falls'
+  const isMoniTraka = project?.slug === 'moni-traka'
+  const moniSolutionSlides = [
+    {
+      title: 'Smart Dashboard & Cash Tracking',
+      image: 'https://i.postimg.cc/1XFcLCf6/Solution-2-(1).png',
+    },
+    {
+      title: 'Auto Transaction Tracking',
+      image: 'https://i.postimg.cc/632dvjLs/Solution-1-(1).png',
+    },
+    {
+      title: 'Multi-Card Management',
+      image: 'https://i.postimg.cc/qvJyLMX6/Solution-3-(1).png',
+    },
+  ]
+
+  const showPreviousSolutionSlide = () => {
+    setSolutionSlideIndex((prev) => (prev === 0 ? moniSolutionSlides.length - 1 : prev - 1))
+  }
+
+  const showNextSolutionSlide = () => {
+    setSolutionSlideIndex((prev) => (prev === moniSolutionSlides.length - 1 ? 0 : prev + 1))
+  }
+
+  const moniProcessSlides = [
+    {
+      title: '👤 User Research',
+      image: 'https://i.postimg.cc/vBVVB1bs/Group-32-(1).png',
+      body:
+        'A user persona was created to understand user needs, behaviors, and pain points in managing daily expenses.',
+    },
+    {
+      title: '✏️ Sketches',
+      image: 'https://i.postimg.cc/jSSnf3tX/sketches.png',
+      body:
+        'I started the design process by creating hand-drawn sketches to quickly explore layout ideas and screen structure. These sketches helped me visualize the main features such as the dashboard, card management, and transaction history before moving into digital design.',
+    },
+    {
+      title: '📱 Wireframes & Prototypes',
+      image: 'https://i.postimg.cc/zDwycYBZ/sketches-(1).png',
+      body:
+        'Based on the sketches, I developed low-fidelity wireframes to define the layout, user flow, and content placement for each screen. This step helped ensure a clear structure and smooth navigation before designing the final high-fidelity UI.',
+    },
+  ]
+
+  const showPreviousProcessSlide = () => {
+    setProcessSlideIndex((prev) => (prev === 0 ? moniProcessSlides.length - 1 : prev - 1))
+  }
+
+  const showNextProcessSlide = () => {
+    setProcessSlideIndex((prev) => (prev === moniProcessSlides.length - 1 ? 0 : prev + 1))
+  }
+
+  const onProcessTouchStart = (event) => {
+    processTouchStartX.current = event.touches[0].clientX
+  }
+
+  const onProcessTouchEnd = (event) => {
+    if (processTouchStartX.current === null) {
+      return
+    }
+    const deltaX = event.changedTouches[0].clientX - processTouchStartX.current
+    processTouchStartX.current = null
+    if (Math.abs(deltaX) < 40) {
+      return
+    }
+    if (deltaX < 0) {
+      showNextProcessSlide()
+    } else {
+      showPreviousProcessSlide()
+    }
+  }
+
+  useEffect(() => {
+    if (!location.hash) {
+      return
+    }
+    const id = location.hash.replace(/^#/, '')
+    if (!id) {
+      return
+    }
+    const t = requestAnimationFrame(() => {
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    })
+    return () => cancelAnimationFrame(t)
+  }, [location.pathname, location.hash])
+
+  if (!project) {
+    return (
+      <main className="min-h-screen bg-[#cbc8e9] px-4 pb-10 pt-8 sm:px-6 lg:px-10">
+        <section className="mx-auto max-w-5xl rounded-[28px] border border-zinc-500/70 bg-[#cfccf0] p-8 text-center shadow-[0_10px_26px_rgba(32,32,32,0.08)]">
+          <h1 className="text-4xl font-semibold text-zinc-900">Project not found</h1>
+          <Link
+            to="/#home"
+            className="mt-6 inline-block rounded-xl border border-zinc-500/80 bg-[#f9f9f9] px-5 py-3 text-base font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
+          >
+            ← Back to Home
+          </Link>
+        </section>
+      </main>
+    )
+  }
+
+  return (
+    <main className="min-h-screen bg-[#cbc8e9] px-4 pb-10 pt-8 sm:px-6 lg:px-10">
+      <section className="mx-auto max-w-5xl rounded-[28px] border border-zinc-500/70 bg-[#cfccf0] px-6 py-8 shadow-[0_10px_26px_rgba(32,32,32,0.08)] sm:px-8 lg:px-10">
+        <header className="text-center">
+          <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 sm:text-6xl">
+            {project.title}
+          </h1>
+          <p className="mt-4 text-sm font-medium tracking-wide text-zinc-700">{project.subtitle}</p>
+        </header>
+
+        <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] p-4 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:p-6">
+          <img
+            src={project.imageSrc}
+            alt={project.imageAlt}
+            className="h-auto w-full rounded-[16px] border border-zinc-500/60 object-contain"
+          />
+        </div>
+
+        {isMoniTraka ? (
+          <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
+            <section className="mb-10 mt-1 rounded-[18px] border border-zinc-500/60 bg-[#fffde9] px-6 py-6">
+              <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">Contents</h2>
+              <ul className="mt-5 space-y-2 text-lg text-zinc-700">
+                <li>
+                  <a href="#problem" className="transition-colors duration-300 hover:text-zinc-900 hover:underline">
+                    Problem
+                  </a>
+                </li>
+                <li>
+                  <a href="#solution" className="transition-colors duration-300 hover:text-zinc-900 hover:underline">
+                    Solution
+                  </a>
+                </li>
+                <li>
+                  <a href="#process" className="transition-colors duration-300 hover:text-zinc-900 hover:underline">
+                    Process
+                  </a>
+                </li>
+                <li>
+                  <a href="#final-design" className="transition-colors duration-300 hover:text-zinc-900 hover:underline">
+                    Final Design
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#product-success"
+                    className="transition-colors duration-300 hover:text-zinc-900 hover:underline"
+                  >
+                    Product Successes 👏
+                  </a>
+                </li>
+                <li>
+                  <a href="#learning" className="transition-colors duration-300 hover:text-zinc-900 hover:underline">
+                    What I Learned 🌱
+                  </a>
+                </li>
+              </ul>
+            </section>
+
+            <section id="problem" className="mt-1 scroll-mt-24">
+              <DotHeading title="Problem" colorClass="bg-red-500" />
+              <p className="mt-5 text-xl leading-relaxed text-zinc-800">
+                Many users find it difficult to track their expenses because most apps require manual
+                input, which is time-consuming and easy to forget.
+                <br />
+                As a result, users often have incomplete records and poor visibility of their
+                spending.
+              </p>
+            </section>
+
+            <section id="solution" className="mt-12 scroll-mt-24">
+              <DotHeading title="Solution" colorClass="bg-lime-600" />
+              <p className="mt-5 text-xl leading-relaxed text-zinc-800">
+                Moni Traka simplifies money tracking with automatic recording and a clear dashboard.
+              </p>
+            </section>
+
+            <section className="mt-10">
+              <div className="w-full overflow-hidden rounded-[28px]">
+                <div
+                  className="flex w-full transition-transform duration-500 ease-out"
+                  style={{ transform: `translateX(-${solutionSlideIndex * 100}%)` }}
+                >
+                  {moniSolutionSlides.map((slide) => (
+                    <div
+                      key={slide.title}
+                      className="w-full min-w-0 max-w-full shrink-0 grow-0 basis-full"
+                    >
+                      <div className="rounded-[28px] bg-[#fffde9] p-8 lg:p-10">
+                        <img
+                          src={slide.image}
+                          alt={slide.title}
+                          className="mx-auto h-auto w-full rounded-[16px] object-contain"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-5 flex items-center justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={showPreviousSolutionSlide}
+                  className="rounded-full border border-zinc-500/70 bg-white/70 px-4 py-2 text-lg text-zinc-700 transition-colors duration-300 hover:bg-white"
+                  aria-label="Previous solution slide"
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  onClick={showNextSolutionSlide}
+                  className="rounded-full border border-zinc-500/70 bg-white/70 px-4 py-2 text-lg text-zinc-700 transition-colors duration-300 hover:bg-white"
+                  aria-label="Next solution slide"
+                >
+                  →
+                </button>
+              </div>
+
+              <div className="mt-3 flex items-center justify-center gap-2">
+                {moniSolutionSlides.map((slide, idx) => (
+                  <button
+                    key={slide.title}
+                    type="button"
+                    onClick={() => setSolutionSlideIndex(idx)}
+                    className={`h-2.5 w-2.5 rounded-full transition-colors duration-300 ${
+                      idx === solutionSlideIndex ? 'bg-zinc-800' : 'bg-zinc-400/70'
+                    }`}
+                    aria-label={`Go to ${slide.title}`}
+                  />
+                ))}
+              </div>
+            </section>
+
+            <section id="process" className="mt-16 scroll-mt-24">
+              <DotHeading title="Process" colorClass="bg-sky-500" />
+
+              <div
+                className="mt-6"
+                onTouchStart={onProcessTouchStart}
+                onTouchEnd={onProcessTouchEnd}
+                role="presentation"
+              >
+                <div className="w-full overflow-hidden rounded-[28px]">
+                  <div
+                    className="flex w-full transition-transform duration-500 ease-out"
+                    style={{ transform: `translateX(-${processSlideIndex * 100}%)` }}
+                  >
+                    {moniProcessSlides.map((slide) => (
+                      <div
+                        key={slide.title}
+                        className="w-full min-w-0 max-w-full shrink-0 grow-0 basis-full"
+                      >
+                        <div className="rounded-[28px] bg-[#fffde9] p-8 lg:p-10">
+                          <h3 className="text-3xl font-semibold text-zinc-900 sm:text-4xl">{slide.title}</h3>
+                          <img
+                            src={slide.image}
+                            alt={slide.title}
+                            className="mx-auto mt-5 h-auto w-full max-w-full rounded-[16px] object-contain"
+                          />
+                          <p className="mt-5 text-xl leading-relaxed text-zinc-800">{slide.body}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-5 flex items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={showPreviousProcessSlide}
+                    className="rounded-full border border-zinc-500/70 bg-white/70 px-4 py-2 text-lg text-zinc-700 transition-colors duration-300 hover:bg-white"
+                    aria-label="Previous process slide"
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    onClick={showNextProcessSlide}
+                    className="rounded-full border border-zinc-500/70 bg-white/70 px-4 py-2 text-lg text-zinc-700 transition-colors duration-300 hover:bg-white"
+                    aria-label="Next process slide"
+                  >
+                    →
+                  </button>
+                </div>
+
+                <div className="mt-3 flex items-center justify-center gap-2">
+                  {moniProcessSlides.map((slide, idx) => (
+                    <button
+                      key={slide.title}
+                      type="button"
+                      onClick={() => setProcessSlideIndex(idx)}
+                      className={`h-2.5 w-2.5 rounded-full transition-colors duration-300 ${
+                        idx === processSlideIndex ? 'bg-zinc-800' : 'bg-zinc-400/70'
+                      }`}
+                      aria-label={`Go to ${slide.title}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section id="final-design" className="mt-16 scroll-mt-24">
+              <h2 className="text-4xl font-semibold tracking-tight text-zinc-900">Final Design</h2>
+              <img
+                src="https://i.postimg.cc/02W2Tk1H/full-app-(2).png"
+                alt="Moni Traka final design screens"
+                className="mt-5 h-auto w-full rounded-[16px] border border-zinc-500/60 object-contain"
+              />
+              <p className="mt-5 text-xl leading-relaxed text-zinc-800">
+                The final design of Moni Traka focuses on simplicity, clarity, and ease of use. The
+                interface uses a clean layout with a consistent color scheme to highlight important
+                information such as balance, transactions, and actions. Key screens include the
+                dashboard, transaction report, card management, and profile page, allowing users to
+                easily track and manage their finances in one place.
+              </p>
+            </section>
+
+            <section id="product-success" className="mt-12 scroll-mt-24">
+              <h2 className="text-4xl font-semibold tracking-tight text-zinc-900">Product Successes 👏</h2>
+              <p className="mt-5 text-xl leading-relaxed text-zinc-800">
+                The final design improved usability by simplifying expense tracking and reducing the
+                need for manual input. Users were able to track their spending more consistently and
+                understand their financial habits more clearly. Early feedback showed that users
+                appreciated the clean interface, real-time dashboard, and automatic tracking
+                features, making the app easy and enjoyable to use.
+              </p>
+            </section>
+
+            <section id="learning" className="mt-12 scroll-mt-24">
+              <h2 className="text-4xl font-semibold tracking-tight text-zinc-900">What I Learned 🌱</h2>
+              <p className="mt-5 text-xl leading-relaxed text-zinc-800">
+                Through this project, I learned that good UI/UX design is not just about visual
+                design, but about solving real user problems. I realized the importance of
+                understanding user behavior, especially how users prefer fast and simple solutions in
+                daily tasks. I also learned how to design clear user flows, improve usability through
+                iteration, and create interfaces that balance functionality and simplicity.
+              </p>
+            </section>
+          </div>
+        ) : isRainbowFalls ? (
+          <div className="mt-8 rounded-[24px] border border-zinc-500/70 bg-[#f6f6f6] px-6 py-8 shadow-[0_8px_20px_rgba(30,30,30,0.05)] sm:px-8">
+            <section className="mt-1">
+              <DotHeading title="Problem" colorClass="bg-red-500" />
+              <BulletList
+                items={[
+                  'The original website has an outdated and unattractive design',
+                  'Poor layout makes content hard to read and navigate',
+                  'Weak visual hierarchy, important information is not clear',
+                  'Not responsive across different devices',
+                ]}
+              />
+            </section>
+
+            <section className="mt-12">
+              <DotHeading title="Solution" colorClass="bg-lime-600" />
+              <BulletList
+                items={[
+                  'Redesigned with a clean and modern interface',
+                  'Improved visual hierarchy with clear headings and structure',
+                  'Created responsive layouts for desktop, tablet, and mobile',
+                  'Enhanced usability and readability',
+                ]}
+              />
+            </section>
+
+            <section className="mt-12">
+              <DotHeading title="Process" colorClass="bg-sky-500" />
+              <BulletList
+                items={[
+                  'Reviewed the existing website and identified key issues',
+                  'Created wireframes to plan layout and structure',
+                  'Designed high-fidelity UI in Figma',
+                  'Adapted the design for different screen sizes',
+                ]}
+              />
+            </section>
+
+            <section className="mt-12">
+              <DotHeading title="Key Features" colorClass="bg-violet-400" />
+              <BulletList
+                items={[
+                  'Responsive design across multiple devices',
+                  'Clean and modern visual style',
+                  'Improved navigation and user flow',
+                ]}
+              />
+            </section>
+
+            <section className="mt-16">
+              <h2 className="text-5xl font-semibold tracking-tight text-zinc-900">BEFORE &amp; AFTER</h2>
+
+              <div className="mt-8">
+                <DotHeading title="Before" colorClass="bg-amber-500" />
+                <BulletList
+                  items={[
+                    'Inconsistent font sizes and unclear text hierarchy',
+                    'Low contrast between text and background',
+                    'No clear color system, making the design look outdated',
+                  ]}
+                />
+                <img
+                  src="https://i.postimg.cc/mr7XHrb5/Screenshot-2025-07-18-014613-cleanup-1.png"
+                  alt="Rainbow Falls old website design"
+                  className="mt-6 h-auto w-full rounded-[16px] border border-zinc-500/60 object-contain"
+                />
+              </div>
+
+              <div className="mt-10">
+                <DotHeading title="After" colorClass="bg-lime-600" />
+                <BulletList
+                  items={[
+                    'Clear typography hierarchy with consistent font styles',
+                    'High contrast for better readability and accessibility',
+                    'Modern color palette that improves visual appeal and user experience',
+                  ]}
+                />
+                <img
+                  src="https://i.postimg.cc/bYLR036S/Rainbow-Falls-Kennel-Website-Redesign-(1).png"
+                  alt="Rainbow Falls redesigned website"
+                  className="mt-6 h-auto w-full rounded-[16px] border border-zinc-500/60 object-contain"
+                />
+              </div>
+            </section>
+
+            <section className="mt-12">
+              <DotHeading title="Reflection" colorClass="bg-sky-500" />
+              <BulletList
+                items={[
+                  'Learned how to redesign outdated interfaces',
+                  'Improved skills in responsive design',
+                  'Gained better understanding of visual hierarchy and layout',
+                ]}
+              />
+            </section>
+          </div>
+        ) : (
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:gap-5">
+            <section className="rounded-[18px] border border-zinc-500/60 bg-[#f6f6f6] px-5 py-5">
+              <h2 className="text-lg font-semibold text-zinc-800">Overview</h2>
+              <p className="mt-3 text-base leading-relaxed text-zinc-700">{project.overview}</p>
+            </section>
+
+            <section className="rounded-[18px] border border-zinc-500/60 bg-[#f6f6f6] px-5 py-5">
+              <h2 className="text-lg font-semibold text-zinc-800">Problem</h2>
+              <p className="mt-3 text-base leading-relaxed text-zinc-700">{project.problem}</p>
+            </section>
+
+            <section className="rounded-[18px] border border-zinc-500/60 bg-[#f6f6f6] px-5 py-5">
+              <h2 className="text-lg font-semibold text-zinc-800">Solution</h2>
+              <p className="mt-3 text-base leading-relaxed text-zinc-700">{project.solution}</p>
+            </section>
+
+            <section className="rounded-[18px] border border-zinc-500/60 bg-[#f6f6f6] px-5 py-5">
+              <h2 className="text-lg font-semibold text-zinc-800">Tools Used</h2>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {project.tools.map((tool) => (
+                  <span
+                    key={tool}
+                    className="rounded-full border border-zinc-500/70 bg-white px-3 py-1.5 text-sm font-medium text-zinc-700"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </section>
+          </div>
+        )}
+
+        <div className="mt-8 text-center">
+          <Link
+            to="/#home"
+            className="inline-block rounded-xl border border-zinc-500/80 bg-[#f9f9f9] px-5 py-3 text-base font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
+          >
+            ← Back to Home
+          </Link>
+        </div>
+      </section>
+    </main>
+  )
+}
+
+export default ProjectDetailPage
