@@ -108,7 +108,12 @@ function ProjectDetailPage({ projectSlug }) {
     { id: 'reflection', label: 'Reflection', accent: 'bg-emerald-400' },
   ]
   const shinChanScreenshotSlides = [
-    { src: 'https://i.postimg.cc/NFQ1L1D8/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 1' },
+    {
+      src: 'https://i.postimg.cc/NFQ1L1D8/image.png',
+      alt: 'Shin-Chan Adventures gameplay screenshot 1',
+      caption:
+        'This is the main menu where players choose the game difficulty (Easy, Medium, Hard) to start playing.',
+    },
     { src: 'https://i.postimg.cc/NFNrMZLV/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 2' },
     { src: 'https://i.postimg.cc/rmMd9q4c/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 3' },
     { src: 'https://i.postimg.cc/MZscy2p2/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 4' },
@@ -704,6 +709,11 @@ function ProjectDetailPage({ projectSlug }) {
                       />
                     ))}
                   </div>
+                  {shinChanScreenshotSlides[shinChanScreenshotIndex]?.caption ? (
+                    <p className="mt-4 text-center text-base leading-relaxed text-zinc-700">
+                      {shinChanScreenshotSlides[shinChanScreenshotIndex].caption}
+                    </p>
+                  ) : null}
                 </div>
               </section>
 
