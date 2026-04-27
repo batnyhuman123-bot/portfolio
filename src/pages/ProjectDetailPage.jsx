@@ -114,7 +114,12 @@ function ProjectDetailPage({ projectSlug }) {
       caption:
         'This is the main menu where players choose the game difficulty (Easy, Medium, Hard) to start playing.',
     },
-    { src: 'https://i.postimg.cc/NFNrMZLV/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 2' },
+    {
+      src: 'https://i.postimg.cc/NFNrMZLV/image.png',
+      alt: 'Shin-Chan Adventures gameplay screenshot 2',
+      caption:
+        'This screen appears when the player loses the game (runs out of lives or time). It shows a “Game Over” message and gives the option to play again or return, making it easy for players to restart quickly.',
+    },
     { src: 'https://i.postimg.cc/rmMd9q4c/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 3' },
     { src: 'https://i.postimg.cc/MZscy2p2/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 4' },
   ]
