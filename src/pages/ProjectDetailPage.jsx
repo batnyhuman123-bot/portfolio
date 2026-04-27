@@ -126,7 +126,12 @@ function ProjectDetailPage({ projectSlug }) {
       caption:
         'This screen shows the player restarting the game after losing. The player can click “Yes” to retry and continue playing, with the game resetting lives, score, and timer.',
     },
-    { src: 'https://i.postimg.cc/MZscy2p2/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 4' },
+    {
+      src: 'https://i.postimg.cc/MZscy2p2/image.png',
+      alt: 'Shin-Chan Adventures gameplay screenshot 4',
+      caption:
+        'This screen appears when the player completes the level successfully. It shows a “You Win” message and allows the player to go back or continue, giving a clear sense of achievement.',
+    },
   ]
   const moniFigmaUrl =
     'https://www.figma.com/design/lmuOkQEvos55ir5E676haI/MONI-TRAKA?node-id=0-1&t=hwkNYeyZZyvuc6Wm-1'
