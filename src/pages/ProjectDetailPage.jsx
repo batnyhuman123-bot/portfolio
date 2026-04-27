@@ -676,6 +676,11 @@ function ProjectDetailPage({ projectSlug }) {
                       ))}
                     </div>
                   </div>
+                  {shinChanScreenshotSlides[shinChanScreenshotIndex]?.caption ? (
+                    <p className="mt-4 text-center text-base leading-relaxed text-zinc-700">
+                      {shinChanScreenshotSlides[shinChanScreenshotIndex].caption}
+                    </p>
+                  ) : null}
 
                   <div className="mt-5 flex items-center justify-center gap-3">
                     <button
@@ -709,11 +714,6 @@ function ProjectDetailPage({ projectSlug }) {
                       />
                     ))}
                   </div>
-                  {shinChanScreenshotSlides[shinChanScreenshotIndex]?.caption ? (
-                    <p className="mt-4 text-center text-base leading-relaxed text-zinc-700">
-                      {shinChanScreenshotSlides[shinChanScreenshotIndex].caption}
-                    </p>
-                  ) : null}
                 </div>
               </section>
 
