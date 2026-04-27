@@ -120,7 +120,12 @@ function ProjectDetailPage({ projectSlug }) {
       caption:
         'This screen appears when the player loses the game (runs out of lives or time). It shows a “Game Over” message and gives the option to play again or return, making it easy for players to restart quickly.',
     },
-    { src: 'https://i.postimg.cc/rmMd9q4c/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 3' },
+    {
+      src: 'https://i.postimg.cc/rmMd9q4c/image.png',
+      alt: 'Shin-Chan Adventures gameplay screenshot 3',
+      caption:
+        'This screen shows the player restarting the game after losing. The player can click “Yes” to retry and continue playing, with the game resetting lives, score, and timer.',
+    },
     { src: 'https://i.postimg.cc/MZscy2p2/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 4' },
   ]
   const moniFigmaUrl =
