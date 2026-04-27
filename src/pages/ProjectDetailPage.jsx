@@ -112,6 +112,12 @@ function ProjectDetailPage({ projectSlug }) {
     { src: 'https://i.postimg.cc/rmMd9q4c/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 3' },
     { src: 'https://i.postimg.cc/MZscy2p2/image.png', alt: 'Shin-Chan Adventures gameplay screenshot 4' },
   ]
+  const moniFigmaUrl =
+    'https://www.figma.com/design/lmuOkQEvos55ir5E676haI/MONI-TRAKA?node-id=0-1&t=hwkNYeyZZyvuc6Wm-1'
+  const rainbowFigmaUrl =
+    'https://www.figma.com/design/ArSE9ytfAf7tseEJn1PxUw/Redesign-website?t=hwkNYeyZZyvuc6Wm-1'
+  const moniFigmaEmbed = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(moniFigmaUrl)}`
+  const rainbowFigmaEmbed = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(rainbowFigmaUrl)}`
 
   const showPreviousProcessSlide = () => {
     setProcessSlideIndex((prev) => (prev === 0 ? moniProcessSlides.length - 1 : prev - 1))
@@ -431,6 +437,38 @@ function ProjectDetailPage({ projectSlug }) {
                 daily tasks. I also learned how to design clear user flows, improve usability through
                 iteration, and create interfaces that balance functionality and simplicity.
               </p>
+            </section>
+
+            <section className="mt-12 scroll-mt-24">
+              <DotHeading title="Figma File" colorClass="bg-indigo-500" />
+              <a
+                href={moniFigmaUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-5 block rounded-[16px] border border-zinc-500/60 bg-white/40 p-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/70"
+              >
+                <img
+                  src={project.imageSrc}
+                  alt="Moni Traka cover preview"
+                  className="h-auto w-full rounded-[12px] object-contain"
+                />
+              </a>
+              <a
+                href={moniFigmaUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-block rounded-xl border border-zinc-500/80 bg-[#f9f9f9] px-5 py-3 text-base font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
+              >
+                Open Moni Traka Figma
+              </a>
+              <div className="mt-4 overflow-hidden rounded-[16px] border border-zinc-500/60 bg-white">
+                <iframe
+                  title="Moni Traka Figma Embed"
+                  src={moniFigmaEmbed}
+                  className="h-[480px] w-full"
+                  allowFullScreen
+                />
+              </div>
             </section>
             </div>
           </>
@@ -797,6 +835,38 @@ function ProjectDetailPage({ projectSlug }) {
                   'Gained better understanding of visual hierarchy and layout',
                 ]}
               />
+            </section>
+
+            <section className="mt-12 scroll-mt-24">
+              <DotHeading title="Figma File" colorClass="bg-indigo-500" />
+              <a
+                href={rainbowFigmaUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-5 block rounded-[16px] border border-zinc-500/60 bg-white/40 p-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/70"
+              >
+                <img
+                  src={project.imageSrc}
+                  alt="Redesign website cover preview"
+                  className="h-auto w-full rounded-[12px] object-contain"
+                />
+              </a>
+              <a
+                href={rainbowFigmaUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-block rounded-xl border border-zinc-500/80 bg-[#f9f9f9] px-5 py-3 text-base font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
+              >
+                Open Redesign Website Figma
+              </a>
+              <div className="mt-4 overflow-hidden rounded-[16px] border border-zinc-500/60 bg-white">
+                <iframe
+                  title="Redesign Website Figma Embed"
+                  src={rainbowFigmaEmbed}
+                  className="h-[480px] w-full"
+                  allowFullScreen
+                />
+              </div>
             </section>
             </div>
           </>
