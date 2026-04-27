@@ -96,6 +96,7 @@ function ProjectDetailPage({ projectSlug }) {
     { id: 'process', label: 'Process', accent: 'bg-violet-500' },
     { id: 'testing-feedback', label: 'Testing & Feedback', accent: 'bg-orange-400' },
     { id: 'screenshots', label: 'Screenshots', accent: 'bg-pink-400' },
+    { id: 'demo-video', label: 'Demo Video', accent: 'bg-red-500' },
     { id: 'learning', label: 'What I Learned', accent: 'bg-emerald-500' },
   ]
   const rainbowContents = [
@@ -118,6 +119,8 @@ function ProjectDetailPage({ projectSlug }) {
     'https://www.figma.com/design/ArSE9ytfAf7tseEJn1PxUw/Redesign-website?t=hwkNYeyZZyvuc6Wm-1'
   const moniFigmaEmbed = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(moniFigmaUrl)}`
   const rainbowFigmaEmbed = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(rainbowFigmaUrl)}`
+  const shinChanVideoUrl = 'https://www.youtube.com/watch?v=oF9LcAQkAxQ'
+  const shinChanVideoEmbed = 'https://www.youtube.com/embed/oF9LcAQkAxQ'
 
   const showPreviousProcessSlide = () => {
     setProcessSlideIndex((prev) => (prev === 0 ? moniProcessSlides.length - 1 : prev - 1))
@@ -701,6 +704,28 @@ function ProjectDetailPage({ projectSlug }) {
                       />
                     ))}
                   </div>
+                </div>
+              </section>
+
+              <section id="demo-video" className="mt-12 scroll-mt-24">
+                <DotHeading title="🎥 Demo Video" colorClass="bg-red-500" />
+                <a
+                  href={shinChanVideoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-4 inline-block rounded-xl border border-zinc-500/80 bg-[#f9f9f9] px-5 py-3 text-base font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
+                >
+                  Open Video on YouTube
+                </a>
+                <div className="mt-5 overflow-hidden rounded-[16px] border border-zinc-500/60 bg-black">
+                  <iframe
+                    className="aspect-video w-full"
+                    src={shinChanVideoEmbed}
+                    title="Shin-Chan Adventures gameplay demo video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
                 </div>
               </section>
 
